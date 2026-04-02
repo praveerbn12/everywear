@@ -99,6 +99,7 @@ export default function Dashboard() {
               <p className="text-gray-500 text-sm">List a clothing item</p>
             </Link>
           )}
+          
             {profile?.is_seller && (
     <Link href="/seller-bookings" className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition cursor-pointer border-2 border-transparent hover:border-black">
         <div className="text-3xl mb-2">📬</div>
@@ -106,6 +107,13 @@ export default function Dashboard() {
         <p className="text-gray-500 text-sm">Accept or reject bookings</p>
     </Link>
     )}
+    {profile?.is_admin && (
+  <Link href="/admin" className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition cursor-pointer border-2 border-transparent hover:border-black">
+    <div className="text-3xl mb-2">🛡️</div>
+    <h3 className="font-bold text-lg">Admin Panel</h3>
+    <p className="text-gray-500 text-sm">Approve/reject listings</p>
+  </Link>
+)}
         </div>
 
         {/* Wallet */}
