@@ -3,17 +3,6 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabase'
 import Link from 'next/link'
 
-const Logo = () => (
-  <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
-    <svg width="160" height="40" viewBox="0 0 180 48" fill="none">
-      <path
-        d="M24 10 C24 6 28 4 32 4 C36 4 40 6 40 10 C40 14 36 16 32 16 L32 20 L8 36 C6 37 6 40 8 40 L56 40 C58 40 58 37 56 36 L32 20"
-        stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <text x="72" y="28" fontFamily="Helvetica Neue, Arial" fontSize="20" fontWeight="800" fill="#111" letterSpacing="-0.5">EveryWear</text>
-    </svg>
-  </Link>
-)
-
 export default function Marketplace() {
   const [listings, setListings] = useState([])
   const [filtered, setFiltered] = useState([])
@@ -77,27 +66,6 @@ export default function Marketplace() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-
-      {/* ── NAVBAR ── */}
-      <nav className="bg-white border-b border-gray-100 px-8 py-4 flex justify-between items-center sticky top-0 z-10">
-        <Logo />
-        {currentUser ? (
-          <Link href="/dashboard" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-            ← Dashboard
-          </Link>
-        ) : (
-          <div className="flex items-center gap-4">
-            <Link href="/login" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-              Sign In
-            </Link>
-            <Link href="/register"
-              className="bg-black text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-              Get Started
-            </Link>
-          </div>
-        )}
-      </nav>
-
       <div className="px-8 py-8">
         <h1 className="text-3xl font-black text-gray-900 mb-1">Browse Marketplace</h1>
         <p className="text-gray-400 text-sm mb-6">
@@ -106,8 +74,6 @@ export default function Marketplace() {
 
         {/* ── SEARCH + FILTERS ROW ── */}
         <div className="flex gap-3 flex-wrap mb-6 items-center">
-
-          {/* Search bar */}
           <div className="relative">
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
@@ -121,7 +87,6 @@ export default function Marketplace() {
             />
           </div>
 
-          {/* Size */}
           <select
             className="border border-gray-200 bg-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-black"
             value={filters.size}
@@ -131,7 +96,6 @@ export default function Marketplace() {
             <option>L</option><option>XL</option><option>XXL</option>
           </select>
 
-          {/* Color */}
           <select
             className="border border-gray-200 bg-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-black"
             value={filters.color}
@@ -143,7 +107,6 @@ export default function Marketplace() {
             <option>Grey</option><option>Orange</option><option>Multicolor</option>
           </select>
 
-          {/* Max price */}
           <input
             type="number"
             placeholder="Max price (credits)"
@@ -152,10 +115,8 @@ export default function Marketplace() {
             onChange={e => setFilters({...filters, maxPrice: e.target.value})}
           />
 
-          {/* Clear */}
           {hasFilters && (
-            <button
-              onClick={clearFilters}
+            <button onClick={clearFilters}
               className="text-sm text-gray-400 hover:text-black underline underline-offset-2">
               Clear filters
             </button>
@@ -182,8 +143,7 @@ export default function Marketplace() {
             <p className="text-5xl mb-4">🔍</p>
             <p className="font-semibold text-gray-900 mb-1">No listings found</p>
             <p className="text-gray-400 text-sm mb-4">Try adjusting your search or filters</p>
-            <button
-              onClick={clearFilters}
+            <button onClick={clearFilters}
               className="text-sm font-medium bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors">
               Clear all filters
             </button>

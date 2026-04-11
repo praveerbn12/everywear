@@ -1,3 +1,7 @@
+'use client'
+import { useEffect } from 'react'
+import { supabase } from '../lib/supabase'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 const Logo = () => (
@@ -12,27 +16,18 @@ const Logo = () => (
 )
 
 export default function Home() {
+  const router = useRouter()
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) router.push('/home')
+    }
+    checkAuth()
+  }, [])
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
-
-      {/* ── NAVBAR ── */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-gray-100 sticky top-0 bg-white z-10">
-        <Logo />
-        <div className="flex items-center gap-6">
-          <Link href="/marketplace"
-            className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-            Browse
-          </Link>
-          <Link href="/login"
-            className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-            Sign In
-          </Link>
-          <Link href="/register"
-            className="bg-black text-white text-sm font-medium px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-            Get Started
-          </Link>
-        </div>
-      </nav>
 
       {/* ── HERO ── */}
       <section className="flex-1 flex flex-col items-center justify-center text-center px-8 py-24">

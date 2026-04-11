@@ -22,7 +22,7 @@ export default function Login() {
 
     if (error) { setError(error.message); setLoading(false); return }
 
-    router.push('/dashboard')
+    router.push('/home')
   }
 
   return (
