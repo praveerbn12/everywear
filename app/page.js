@@ -115,13 +115,13 @@ export default function Home() {
               The average student discards event wear after just 3–5 wears. Each EveryWear rental adds uses to an existing garment — cutting its per-wear CO₂ footprint by up to 57% compared to buying new.
             </p>
             <p className="text-gray-400 text-xs">
-              At 400 rentals/month: <span className="text-gray-700 font-semibold">440 kg CO₂ avoided</span> and <span className="text-gray-700 font-semibold">236,000 litres of water saved</span>
+              At 400 rentals/month: <span className="text-gray-700 font-semibold">970 lbs of CO₂ avoided</span> and <span className="text-gray-700 font-semibold">62,345 gallons of water saved</span>
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { val: '440 kg', label: 'CO₂ avoided per month', sub: '≈ 1,750 km of driving' },
-              { val: '236K L', label: 'Water saved per month', sub: '≈ 1,500 showers' },
+              { val: '970 lbs', label: 'CO₂ avoided per month', sub: '≈ 1,087 mi. of driving' },
+              { val: '62,345 gal', label: 'Water saved per month', sub: '≈ 1,500 showers' },
               { val: '10%', label: 'Global carbon from fashion', sub: 'More than aviation' },
               { val: '3–5x', label: 'Avg wears before discard', sub: 'Student event wear' },
             ].map(item => (
