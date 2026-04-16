@@ -63,11 +63,11 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
 
       {/* ── HERO BANNER ── */}
-      <div className="bg-black text-white px-8 py-10">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="bg-black text-white px-4 md:px-8 py-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div>
             <p className="text-gray-500 text-xs font-semibold uppercase tracking-widest mb-2">Syracuse University</p>
-            <h1 className="text-4xl font-black tracking-tight leading-tight mb-3">
+            <h1 className="text-2xl md:text-4xl font-black tracking-tight leading-tight mb-3">
               {isNew ? `Welcome, ${firstName}! 🎉` : `Welcome back, ${firstName}!`}
             </h1>
             <p className="text-gray-400 text-sm max-w-md">
@@ -90,8 +90,8 @@ export default function Home() {
       </div>
 
       {/* ── QUICK ACTION TABS ── */}
-      <div className="bg-white border-b border-gray-100 px-8">
-        <div className="max-w-7xl mx-auto flex gap-1">
+      <div className="bg-white border-b border-gray-100 px-2 md:px-8 overflow-x-auto">
+        <div className="max-w-7xl mx-auto flex gap-1 min-w-max md:min-w-0">
           {[
             { id: 'browse', label: '🛍️ Browse' },
             { id: 'mylistings', label: '👗 My Listings' },
@@ -107,7 +107,7 @@ export default function Home() {
       </div>
 
       {/* ── TAB CONTENT ── */}
-      <div className="max-w-7xl mx-auto px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
 
         {/* BROWSE TAB */}
         {activeTab === 'browse' && (
@@ -118,7 +118,7 @@ export default function Home() {
                 View all →
               </Link>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {listings.map(listing => (
                 <Link key={listing.id} href={`/listing/${listing.id}`}
                   className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gray-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group">

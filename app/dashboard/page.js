@@ -103,7 +103,8 @@ export default function Dashboard() {
         </div>
 
         {/* ── QUICK ACTIONS ── */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        {/* <div className="grid grid-cols-2 gap-4 mb-6"> */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
           <Link href="/marketplace"
             className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all">
             <div className="text-3xl mb-3">🛍️</div>
