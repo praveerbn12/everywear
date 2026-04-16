@@ -69,7 +69,7 @@ export default function ReviewPage({ params: paramsPromise }) {
 
     setSuccess('Review submitted! Thank you 🎉')
     setSubmitting(false)
-    setTimeout(() => router.push('/dashboard'), 2000)
+    setTimeout(() => router.push('/home'), 2000)
   }
 
   if (loading) return (
@@ -89,7 +89,7 @@ export default function ReviewPage({ params: paramsPromise }) {
       <div className="text-center">
         <p className="text-4xl mb-3">⏳</p>
         <p className="text-gray-500">Reviews are only available after rental is completed</p>
-        <Link href="/dashboard" className="text-black underline mt-2 block">Go to Dashboard</Link>
+        <Link href="/home" className="text-black underline mt-2 block">Go to Dashboard</Link>
       </div>
     </div>
   )
@@ -100,8 +100,8 @@ export default function ReviewPage({ params: paramsPromise }) {
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
-        <Link href="/dashboard" className="text-xl font-bold">👗 EveryWear</Link>
-        <Link href="/dashboard" className="text-sm text-gray-500 hover:underline">← Dashboard</Link>
+        <Link href="/home" className="text-xl font-bold">👗 EveryWear</Link>
+        <Link href="/home" className="text-sm text-gray-500 hover:underline">← Dashboard</Link>
       </nav>
 
       <div className="max-w-lg mx-auto p-6">
@@ -124,7 +124,7 @@ export default function ReviewPage({ params: paramsPromise }) {
               <p className="text-4xl mb-3">✅</p>
               <p className="font-bold">Already reviewed!</p>
               <p className="text-gray-500 text-sm mt-1">You've already submitted a review for this rental</p>
-              <Link href="/dashboard" className="mt-4 block bg-black text-white py-2 px-6 rounded-lg text-sm hover:bg-gray-800 transition">
+              <Link href="/home" className="mt-4 block bg-black text-white py-2 px-6 rounded-lg text-sm hover:bg-gray-800 transition">
                 Go to Dashboard
               </Link>
             </div>

@@ -59,7 +59,6 @@ export default function Navbar() {
       { icon: '📬', label: 'Booking Requests', href: '/seller-bookings' },
     ]},
     { section: 'Account', items: [
-      { icon: '💳', label: 'Wallet', href: '/home#wallet' },
       { icon: '🔔', label: 'Notifications', href: '/notifications' },
       ...(profile?.is_admin ? [{ icon: '🛡️', label: 'Admin Panel', href: '/admin' }] : []),
     ]},

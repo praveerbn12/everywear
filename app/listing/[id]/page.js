@@ -122,7 +122,7 @@ export default function ListingDetail({ params: paramsPromise }) {
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
-        <Link href="/dashboard" className="text-xl font-bold">👗 EveryWear</Link>
+        <Link href="/home" className="text-xl font-bold">👗 EveryWear</Link>
         <Link href="/marketplace" className="text-sm text-gray-500 hover:underline">← Back to Marketplace</Link>
       </nav>
 

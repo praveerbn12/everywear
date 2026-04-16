@@ -48,7 +48,7 @@ export default function MyListings() {
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
-        <Link href="/dashboard" className="text-xl font-bold">👗 EveryWear</Link>
+        <Link href="/home" className="text-xl font-bold">👗 EveryWear</Link>
         <Link href="/create-listing" className="bg-black text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-800 transition">
           + Add Listing
         </Link>

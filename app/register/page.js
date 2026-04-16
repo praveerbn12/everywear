@@ -47,7 +47,7 @@ export default function Register() {
 
     if (dbError) { setError(dbError.message); setLoading(false); return }
 
-    router.push('/dashboard')
+    router.push('/home')
   }
 
   return (

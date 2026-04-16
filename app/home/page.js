@@ -9,10 +9,11 @@ export default function Home() {
   const [profile, setProfile] = useState(null)
   const [listings, setListings] = useState([])
   const [stats, setStats] = useState({ bookings: 0, myListings: 0 })
+  const [transactions, setTransactions] = useState([])
   const [loading, setLoading] = useState(true)
   const [isNew, setIsNew] = useState(false)
   const [activeTab, setActiveTab] = useState('browse')
-
+  
   useEffect(() => { loadData() }, [])
 
   const loadData = async () => {
@@ -41,10 +42,21 @@ export default function Home() {
     const { data: listData } = await supabase
       .from('listings').select('id').eq('seller_id', user.id)
 
+    const { data: txData } = await supabase
+      .from('transactions')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(20)
+    setTransactions(txData || [])
+
     setStats({
       bookings: bookingData?.length || 0,
       myListings: listData?.length || 0
     })
+    const params = new URLSearchParams(window.location.search)
+    const tab = params.get('tab')
+    if (tab) setActiveTab(tab)
     setLoading(false)
   }
 
@@ -77,7 +89,6 @@ export default function Home() {
           <div className="hidden md:flex gap-8 text-right">
             {[
               { num: profile?.credits, label: 'Credits' },
-              { num: stats.bookings, label: 'Active rentals' },
               { num: stats.myListings, label: 'My listings' },
             ].map(s => (
               <div key={s.label}>
@@ -201,23 +212,41 @@ export default function Home() {
         {activeTab === 'wallet' && (
           <div>
             <h2 className="text-2xl font-black text-gray-900 mb-6">My Wallet</h2>
-            <div className="bg-black text-white rounded-2xl p-8 mb-4" id="wallet">
+            <div className="bg-black text-white rounded-2xl p-8 mb-6" id="wallet">
               <p className="text-gray-400 text-sm mb-2">Available balance</p>
               <p className="text-6xl font-black mb-1">{profile?.credits}</p>
               <p className="text-gray-400 text-sm">credits · 1 credit = $1</p>
             </div>
-            <div className="grid grid-cols-3 gap-4">
-              {[
-                { label: 'Earned from rentals', val: '—' },
-                { label: 'Spent on rentals', val: '—' },
-                { label: 'Starting credits', val: '1,000' },
-              ].map(item => (
-                <div key={item.label} className="bg-white rounded-2xl p-5 border border-gray-100 text-center">
-                  <p className="text-xl font-black text-gray-900">{item.val}</p>
-                  <p className="text-xs text-gray-400 mt-1">{item.label}</p>
-                </div>
-              ))}
-            </div>
+
+            <h3 className="text-lg font-black text-gray-900 mb-4">Transaction History</h3>
+            {transactions.length === 0 ? (
+              <div className="bg-white rounded-2xl p-8 border border-gray-100 text-center">
+                <p className="text-3xl mb-2">💳</p>
+                <p className="text-gray-400 text-sm">No transactions yet</p>
+              </div>
+            ) : (
+              <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+                {transactions.map((tx, i) => (
+                  <div key={tx.id}
+                    className={`flex items-center justify-between px-6 py-4 ${i !== transactions.length - 1 ? 'border-b border-gray-50' : ''}`}>
+                    <div className="flex items-center gap-4">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg ${tx.amount > 0 ? 'bg-green-50' : 'bg-red-50'}`}>
+                        {tx.amount > 0 ? '💰' : '🛍️'}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">{tx.description}</p>
+                        <p className="text-xs text-gray-400 mt-0.5">
+                          {new Date(tx.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        </p>
+                      </div>
+                    </div>
+                    <span className={`text-sm font-black ${tx.amount > 0 ? 'text-green-600' : 'text-red-500'}`}>
+                      {tx.amount > 0 ? '+' : ''}{tx.amount} cr
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
